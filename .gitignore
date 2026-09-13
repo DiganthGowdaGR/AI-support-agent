@@ -1,0 +1,7 @@
+data/raw/
+*.csv
+!golden/*.csv
+!outputs/gate/*.csv
+.env
+venv/
+__pycache__/

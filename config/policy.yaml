@@ -1,0 +1,30 @@
+# config/policy.yaml
+# Thresholds per docs-skills/AGENT_POLICY.md section 3.
+# Tuned on dev split only. Any change after seeing test-split results must be
+# logged in DECISIONS.md with the reason (CLAUDE.md working rules).
+
+SEED: 42  # Reproducibility — no unseeded randomness anywhere (CLAUDE.md).
+
+intent_confidence_floor: 0.55  # Below this, classifier is near coin-flip across 9 classes; escalate instead.
+
+retrieval_top_k: 5  # Enough voice variety without diluting the prompt.
+
+retrieval_similarity_floor: 0.35  # cosine — below this, retrieved pairs are topically unrelated in spot checks.
+
+min_evidence_above_floor: 2  # One similar case may be an outlier resolution; two is a weak pattern.
+
+reply_max_chars: 280  # Tweet-native; brand replies are short.
+
+reply_target_chars: [100, 220]  # Matches the brand's observed reply length distribution (p25-p75).
+
+classification_temperature: 0.0  # Determinism; classification is not a creative task.
+
+generation_temperature: 0.3  # Slight variation for natural voice, low enough to stay grounded.
+
+judge_temperature: 0.0  # Reproducibility of the measuring instrument.
+
+max_llm_retries: 1  # Retry once on malformed JSON, then fall back.
+
+repeat_contact_window_hours: 48  # Beyond this, treat as a new issue.
+
+escalation_rate_alarm: [0.05, 0.60]  # Outside this band [low, high] the router is broken, not cautious.
