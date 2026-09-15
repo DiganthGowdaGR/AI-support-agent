@@ -1,3 +1,6 @@
 pandas
 pyyaml
 pytest
+langdetect
+datasketch
+pyarrow

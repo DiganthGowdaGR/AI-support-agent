@@ -1,0 +1,14 @@
+{
+  "brand": "SpotifyCares",
+  "seed": 42,
+  "input_rows": 43151,
+  "kept": 39197,
+  "dropped_by_reason": {
+    "duplicate_thread_same_root": 1715,
+    "empty_after_clean": 380,
+    "near_duplicate": 603,
+    "non_english": 1197,
+    "orphan_missing_parent": 59
+  },
+  "reconciliation_check": "39197 + 3954 == 43151"
+}

@@ -28,3 +28,11 @@ max_llm_retries: 1  # Retry once on malformed JSON, then fall back.
 repeat_contact_window_hours: 48  # Beyond this, treat as a new issue.
 
 escalation_rate_alarm: [0.05, 0.60]  # Outside this band [low, high] the router is broken, not cautious.
+
+# --- Phase 1: data pipeline (src/build_dataset.py) ---
+
+near_dup_jaccard_threshold: 0.8  # MinHash Jaccard above this = near-identical text, near-certainly a copy/paste duplicate, not a distinct complaint worth two golden-set slots.
+
+drop_deflections: false  # Filtering is a config flag, not a hardcoded step (ARCHITECTURE.md: deflections are counted, not silently discarded). Default off — corpus.parquet keeps every pair with a deflection_tag column; later phases decide whether to filter.
+
+lang_min_words: 6  # langdetect is unreliable below this length. Diagnostic on a 30-row non_english sample: 19/30 (63%) were unambiguously English and almost all under 6 words ("Thank you!!", "Welp okay", "I need help"). Below this, rows are kept and tagged lang_uncertain instead of dropped; langdetect applies as normal at or above it.
